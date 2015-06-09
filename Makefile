@@ -49,25 +49,27 @@ SRC += gcc/syscalls.c
 
 # enable what you need from HAL:
 
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c
-SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c
-SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
-SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
-SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
-SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
-SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
-#SRC += lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s.c
+HAL_PATH = lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx
+
+#SRC += $(HAL_PATH)_hal_hcd.c
+#SRC += $(HAL_PATH)_ll_usb.c
+#SRC += $(HAL_PATH)_hal_spi.c
+#SRC += $(HAL_PATH)_hal_i2c.c
+SRC += $(HAL_PATH)_hal.c
+#SRC += $(HAL_PATH)_hal_adc.c
+#SRC += $(HAL_PATH)_hal_adc_ex.c
+SRC += $(HAL_PATH)_hal_cortex.c
+#SRC += $(HAL_PATH)_hal_dma.c
+#SRC += $(HAL_PATH)_hal_dma_ex.c
+#SRC += $(HAL_PATH)_hal_flash.c
+#SRC += $(HAL_PATH)_hal_flash_ex.c
+SRC += $(HAL_PATH)_hal_rcc.c
+#SRC += $(HAL_PATH)_hal_rcc_ex.c
+SRC += $(HAL_PATH)_hal_gpio.c
+#SRC += $(HAL_PATH)_hal_uart.c
+SRC += $(HAL_PATH)_hal_tim.c
+SRC += $(HAL_PATH)_hal_tim_ex.c
+#SRC += $(HAL_PATH)_hal_i2s.c
 
 # List C source files here which must be compiled in ARM-Mode (no -mthumb).
 SRCARM = 
