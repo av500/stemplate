@@ -19,11 +19,10 @@ USE_THUMB_MODE = YES
 ifeq ($(TARGET),disco)
 MCU       = cortex-m4
 CHIP      = STM32F40x_1024k
-BOARD     = STM32F4DISCOVERY
+BOARD     = F4_DISCO
 
-CDEFS     = -DF4_DISCO
-CDEFS    += -DUSE_STDPERIPH_DRIVER -DUSE_HAL_DRIVER -DUSE_STM32F4_DISCO
-CDEFS    += -DSTM32F4XX -DSTM32F40X -DSTM32F407xx -DARM_MATH_CM4 -D__FPU_PRESENT=1
+CDEFS    += -DUSE_HAL_DRIVER
+CDEFS    += -DSTM32F407xx -DARM_MATH_CM4 -D__FPU_PRESENT=1
 CDEFS    += -DHSE_VALUE=8000000UL
 CDEFS    += -DDEBUG
 CDEFS    += -DDEBUG_BAUDRATE=1000000
@@ -251,16 +250,14 @@ quiet_CMD_AS_O_S = "[AS] $$<"
 quiet_CMD_LD     = "[LD] $@"
 
 # Define Messages
-MSG_SIZE_AFTER = Size after build:
-MSG_LOAD_FILE = Creating load file:
-MSG_EXTENDED_LISTING = [LS]
+MSG_COMPILING    = [CC]
+MSG_ASSEMBLING   = [AS]
+MSG_LINKING      = [LD]
 MSG_SYMBOL_TABLE = [SY]
-MSG_LINKING    = [LD]
-MSG_COMPILING  = [CC]
-MSG_ASSEMBLING = [AS]
-MSG_CLEANING = Cleaning project:
-MSG_ASMFROMC = "Creating asm-File from C-Source:"
-MSG_ASMFROMC_ARM = "Creating asm-File from C-Source (ARM-only):"
+MSG_LISTING      = [LS]
+MSG_LOAD_FILE    = [HX]
+MSG_SIZE_AFTER   = [Size after build]
+MSG_CLEANING     = [Cleaning project]
 
 # List of all source files.
 ALLSRC     = $(ASRCARM) $(ASRC) $(SRCARM) $(SRC)
@@ -291,7 +288,6 @@ build: elf lst sym
 ELFSIZE = $(SIZE) -A  $(OUTDIR)/$(TARGET).elf
 
 sizeafter:
-#	@if [ -f  $(OUTDIR)/$(TARGET).elf ]; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); echo; fi
 	@echo $(MSG_SIZE_AFTER)
 	$(ELFSIZE)
 
@@ -321,7 +317,7 @@ reset:
 # Create extended listing file/disassambly from ELF output file.
 # using objdump (testing: option -C)
 %.lst: %.elf
-	@echo $(MSG_EXTENDED_LISTING) $@
+	@echo $(MSG_LISTING) $@
 	@$(OBJDUMP) -h -S -C -r $< > $@
 
 # Create a symbol table from ELF output file.
@@ -387,17 +383,6 @@ $(OUTDIR)/$(notdir $(basename $(1))).o : $(1) $(BUILDONCHANGE)
 endef
 $(foreach src, $(CPPSRCARM), $(eval $(call COMPILE_CPP_ARM_TEMPLATE, $(src)))) 
 
-# Compile: create assembler files from C source files. ARM/Thumb
-$(SRC:.c=.s) : %.s : %.c $(BUILDONCHANGE)
-	@mkdir -p $(OUTDIR)
-	@echo $(MSG_ASMFROMC) $<
-	@$(CC) $(THUMB) -S $(CFLAGS) $(CONLYFLAGS) $< -o $@
-
-# Compile: create assembler files from C source files. ARM only
-$(SRCARM:.c=.s) : %.s : %.c $(BUILDONCHANGE)
-	@echo $(MSG_ASMFROMC_ARM) $<
-	@$(CC) -S $(CFLAGS) $(CONLYFLAGS) $< -o $@
-
 # Target: clean project.
 clean:
 	@echo $(MSG_CLEANING)
@@ -419,7 +404,6 @@ allclean: clean
 	$(REMOVE) -r ./build_*
 
 # Include the dependency files.
-##-include $(wildcard dep/*)
 -include $(wildcard $(OUTDIR)/dep/*.d)
 
 # Listing of phony targets.
