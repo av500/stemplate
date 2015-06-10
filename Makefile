@@ -21,12 +21,18 @@ MCU       = cortex-m4
 CHIP      = STM32F40x_1024k
 BOARD     = F4_DISCO
 
+CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F407xx -DARM_MATH_CM4 -D__FPU_PRESENT=1
 CDEFS    += -DHSE_VALUE=8000000UL
 CDEFS    += -DDEBUG
 CDEFS    += -DDEBUG_BAUDRATE=1000000
 
+HAL_DRV  = STM32F4xx
+HAL_DRV2 = stm32f4xx
+
+TGT_SRC  = src/system_stm32f4xx.c 
+TGT_SRC += src/stm32f4xx_it.c
 TGT_ASRC = gcc/startup_stm32f407xx.s
 TGT_LD   = -T./gcc/STM32F407VG_FLASH.ld
 OOCD_TGT = board/stm32f4discovery.cfg
@@ -41,15 +47,14 @@ VECTOR_TABLE_LOCATION=VECT_TAB_FLASH
 OUTDIR = build_$(TARGET)
 
 # List C source files here
+SRC  = $(TGT_SRC)
 SRC += src/led.c
 SRC += src/main.c
-SRC += src/stm32f4xx_it.c
-SRC += src/system_stm32f4xx.c
 SRC += gcc/syscalls.c
 
 # enable what you need from HAL:
 
-HAL_PATH = lib/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx
+HAL_PATH = lib/Drivers/$(HAL_DRV)_HAL_Driver/Src/$(HAL_DRV2)
 
 #SRC += $(HAL_PATH)_hal_hcd.c
 #SRC += $(HAL_PATH)_ll_usb.c
@@ -86,8 +91,8 @@ ADEFS =
 
 # List any extra directories to look for include files here.
 EXTRAINCDIRS += src
-EXTRAINCDIRS += lib/Drivers/STM32F4xx_HAL_Driver/Inc
-EXTRAINCDIRS += lib/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+EXTRAINCDIRS += lib/Drivers/$(HAL_DRV)_HAL_Driver/Inc
+EXTRAINCDIRS += lib/Drivers/CMSIS/Device/ST/$(HAL_DRV)/Include
 EXTRAINCDIRS += lib/Drivers/CMSIS/Include
 
 # List non-source files which should trigger build here
@@ -172,7 +177,7 @@ endif
 # Flags for C and C++ (arm-elf-gcc/arm-elf-g++)
 CFLAGS =  -g$(DEBUG)
 CFLAGS += -O$(OPT)
-CFLAGS += -mcpu=$(MCU) $(THUMB_IW) -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
+CFLAGS += -mcpu=$(MCU) $(THUMB_IW)
 CFLAGS += $(CDEFS)
 CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS)) -I.
 # when using ".ramfunc"s without attribute longcall:
