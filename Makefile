@@ -28,7 +28,7 @@ CDEFS    += -DDEBUG
 CDEFS    += -DDEBUG_BAUDRATE=1000000
 
 TGT_ASRC = gcc/startup_stm32f407xx.s
-TGT_LD   = -T./gcc/STM32F4-DISCO/STM32F407VG_FLASH.ld
+TGT_LD   = -T./gcc/STM32F407VG_FLASH.ld
 OOCD_TGT = board/stm32f4discovery.cfg
 endif
 
