@@ -35,7 +35,7 @@ TGT_SRC  = src/system_stm32f4xx.c
 TGT_SRC += src/stm32f4xx_it.c
 TGT_ASRC = gcc/startup_stm32f407xx.s
 TGT_LD   = -T./gcc/STM32F407VG_FLASH.ld
-OOCD_TGT = board/stm32f4discovery.cfg
+OOCD_TGT = stm32f4.cfg
 endif
 
 RUN_MODE=FLASH_RUN
