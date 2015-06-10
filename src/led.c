@@ -5,6 +5,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#ifdef F4_DISCO
+
 #define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOD_CLK_ENABLE
 
 static uint16_t pins[LED_NUM]  = { 
@@ -20,6 +22,26 @@ static GPIO_TypeDef* ports[LED_NUM] = {
 	GPIOD, 
 	GPIOD
 };
+#endif
+
+#ifdef F1_TINY
+
+#define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOA_CLK_ENABLE
+
+static uint16_t pins[LED_NUM]  = { 
+	GPIO_PIN_0, 
+	GPIO_PIN_2, 
+	GPIO_PIN_4, 
+	GPIO_PIN_6, 
+};
+
+static GPIO_TypeDef* ports[LED_NUM] = { 
+	GPIOA, 
+	GPIOA, 
+	GPIOA, 
+	GPIOA
+};
+#endif
 
 void LED_on( unsigned int led )
 {
@@ -50,7 +72,6 @@ void LED_init(void)
 	GPIO_InitTypeDef GPIO_InitStruct;
 
 	LED_GPIO_CLK_ENABLE();
-	__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	int i;
 	for( i = 0; i < LED_NUM; i++ ) {
