@@ -59,6 +59,27 @@ TGT_LD   = -T./gcc/STM32F103X8_FLASH.ld
 OOCD_TGT = stm32f1.cfg
 endif
 
+ifeq ($(TARGET),f105)
+MCU       = cortex-m3
+CHIP      = STM32F105xC
+BOARD     = F105_LITE
+
+CDEFS    += -DUSE_HAL_DRIVER
+CDEFS    += -DSTM32F105xC
+CDEFS    += -DHSE_VALUE=8000000UL
+CDEFS    += -DDEBUG
+CDEFS    += -DDEBUG_BAUDRATE=1000000
+
+HAL_DRV  = STM32F1xx
+HAL_DRV2 = stm32f1xx
+
+TGT_SRC  = src/system_stm32f1xx.c 
+TGT_SRC += src/stm32f1xx_it.c
+TGT_ASRC = gcc/startup_stm32f105xc.s
+TGT_LD   = -T./gcc/STM32F105XB_FLASH.ld
+OOCD_TGT = stm32f1.cfg
+endif
+
 RUN_MODE=FLASH_RUN
 #RUN_MODE=RAM_RUN
 

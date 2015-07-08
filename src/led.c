@@ -43,6 +43,25 @@ static GPIO_TypeDef* ports[LED_NUM] = {
 };
 #endif
 
+#ifdef F105_LITE
+
+#define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOC_CLK_ENABLE
+
+static uint16_t pins[LED_NUM]  = { 
+	GPIO_PIN_2, 
+	GPIO_PIN_2, 
+	GPIO_PIN_2, 
+	GPIO_PIN_2, 
+};
+
+static GPIO_TypeDef* ports[LED_NUM] = { 
+	GPIOC, 
+	GPIOC, 
+	GPIOC, 
+	GPIOC
+};
+#endif
+
 void LED_on( unsigned int led )
 {
 	if( led >= LED_NUM ) {

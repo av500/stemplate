@@ -54,7 +54,7 @@ static void SystemClock_Config( void )
 	}
 }
 #endif
-#ifdef F1_TINY
+#if defined( F1_TINY ) || defined( F105_LITE )
 /**
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 

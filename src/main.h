@@ -13,6 +13,13 @@
 #define GPIO_SPEED_FAST GPIO_SPEED_HIGH
 #endif
 
+#ifdef F105_LITE
+#include "stm32f1xx_hal.h"
+#include "stm32f1xx_it.h"
+
+#define GPIO_SPEED_FAST GPIO_SPEED_HIGH
+#endif
+
 
 void Error_Handler(void);
 
