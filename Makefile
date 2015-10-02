@@ -16,6 +16,28 @@ USE_THUMB_MODE = YES
 # MCU name, submodel and board
 # - MCU used for compiler-option (-mcpu)
 # - BOARD just passed as define (don't used '-' characters)
+ifeq ($(TARGET),wifi)
+MCU       = cortex-m4
+CHIP      = STM32F411xE
+BOARD     = F4_WIFI
+
+CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
+CDEFS    += -DUSE_HAL_DRIVER
+CDEFS    += -DSTM32F411xE -DARM_MATH_CM4 -D__FPU_PRESENT=1
+CDEFS    += -DHSE_VALUE=8000000UL
+CDEFS    += -DDEBUG
+CDEFS    += -DDEBUG_BAUDRATE=115200
+
+HAL_DRV  = STM32F4xx
+HAL_DRV2 = stm32f4xx
+
+TGT_SRC  = src/system_stm32f4xx.c 
+TGT_SRC += src/stm32f4xx_it.c
+TGT_ASRC = gcc/startup_stm32f411xe.s
+TGT_LD   = -T./gcc/STM32F411RE_FLASH.ld
+OOCD_TGT = stm32f4.cfg
+endif
+
 ifeq ($(TARGET),disco)
 MCU       = cortex-m4
 CHIP      = STM32F40x_1024k

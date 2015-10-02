@@ -5,6 +5,25 @@
 #include <string.h>
 #include <ctype.h>
 
+#ifdef F4_WIFI
+
+#define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOA_CLK_ENABLE
+
+static uint16_t pins[LED_NUM]  = { 
+	GPIO_PIN_0, 
+	GPIO_PIN_0, 
+	GPIO_PIN_0, 
+	GPIO_PIN_0, 
+};
+
+static GPIO_TypeDef* ports[LED_NUM] = { 
+	GPIOA, 
+	GPIOA, 
+	GPIOA, 
+	GPIOA
+};
+#endif
+
 #ifdef F4_DISCO
 
 #define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOD_CLK_ENABLE

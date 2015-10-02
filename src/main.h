@@ -1,6 +1,11 @@
 #ifndef _MAIN_H_
 #define _MAIN_H_
 
+#ifdef F4_WIFI
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_it.h"
+#endif
+
 #ifdef F4_DISCO
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx_it.h"
