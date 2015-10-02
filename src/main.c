@@ -1,5 +1,8 @@
 #include "main.h"
 #include "led.h"
+#include "uart.h"
+
+#include <stdio.h>
 
 static TIM_HandleTypeDef timer4_handle;
 
@@ -241,7 +244,12 @@ int main( void )
 
 	TIMER4_init();
 
+	UART_init();
+
+	printf("I'm alive\n");
+	
 	while ( 1 ) {
+printf("wawawa\n");
 		HAL_Delay(125);
 		LED_toggle( LED_1 );
 		HAL_Delay(125);

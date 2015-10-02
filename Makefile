@@ -115,6 +115,7 @@ SRC  = $(TGT_SRC)
 SRC += src/led.c
 SRC += src/main.c
 SRC += gcc/syscalls.c
+SRC += src/uart.c
 
 # enable what you need from HAL:
 
@@ -135,7 +136,7 @@ SRC += $(HAL_PATH)_hal_cortex.c
 SRC += $(HAL_PATH)_hal_rcc.c
 SRC += $(HAL_PATH)_hal_rcc_ex.c
 SRC += $(HAL_PATH)_hal_gpio.c
-#SRC += $(HAL_PATH)_hal_uart.c
+SRC += $(HAL_PATH)_hal_uart.c
 SRC += $(HAL_PATH)_hal_tim.c
 SRC += $(HAL_PATH)_hal_tim_ex.c
 #SRC += $(HAL_PATH)_hal_i2s.c
