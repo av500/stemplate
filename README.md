@@ -29,11 +29,12 @@ To flash the SW to the CPU/module you need to install openOCD and make sure it's
 
 3) Building
 
-To build, simply type
+To build, simply type (replace $target$ with one of the above targets, or edit the Makefile)
 
-TARGET=<target> make
-which will build the project in the build_/ folder
+TARGET=$target$ make
+
+which will build the project in the build_$target$/ folder
 
 To program the board, use
 
-TARGET=<target> make p (or TARGET=<target> make program)
+TARGET=$target$ make p (or TARGET=$target$ make program)
