@@ -22,7 +22,8 @@ Download and unzip the toolchain at:
 https://launchpad.net/gcc-arm-embedded/+download
 Add the PATH to the compile to your PATH variable, e.g.
 
-export PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/arm-none-eabi/bin/
+`export PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/arm-none-eabi/bin/`
+
 2) OpenOCD
 
 To flash the SW to the CPU/module you need to install openOCD and make sure it's in the PATH. you need an STLINK or compatible SWD debugger, edit stm32fx.cfg to switch from v2.1 to v.2.
@@ -31,10 +32,10 @@ To flash the SW to the CPU/module you need to install openOCD and make sure it's
 
 To build, simply type (replace $target$ with one of the above targets, or edit the Makefile)
 
-TARGET=$target$ make
+`TARGET=$target$ make`
 
 which will build the project in the build_$target$/ folder
 
 To program the board, use
 
-TARGET=$target$ make p (or TARGET=$target$ make program)
+`TARGET=$target$ make p (or TARGET=$target$ make program)`
