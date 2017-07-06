@@ -3,13 +3,13 @@ STM32 template project
 
 targets supported:
 
-wifi: 	EMW3165 STM32F411 based WiFi module
+* **wifi:** 	EMW3165 STM32F411 based WiFi module
 
-disco: 	STM32F407 Discovery
+* **disco:** 	STM32F407 Discovery
 
-tiny: 	various STM32F103 based modules from eBay
+* **tiny:** 	various STM32F103 based modules from eBay
 
-f105: 	STM32F105 based module from 36board
+* **f105:** 	STM32F105 based module from 36board
 
 ----------------------
 
@@ -17,9 +17,10 @@ To compile and rund this code you need the following:
 
 1) Toolchain
 
-Download and unzip the toolchain at:
+Download and unzip the toolchain from:
 
-https://launchpad.net/gcc-arm-embedded/+download
+https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads
+
 Add the PATH to the compile to your PATH variable, e.g.
 
 `export PATH=$PATH:/opt/gcc-arm-none-eabi-4_9-2014q4/arm-none-eabi/bin/`
