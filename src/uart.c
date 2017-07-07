@@ -53,14 +53,16 @@ int UART_init( void )
 	GPIO_InitStruct.Mode	  = GPIO_MODE_AF_PP;
 	GPIO_InitStruct.Pull	  = GPIO_NOPULL;
 	GPIO_InitStruct.Speed	  = GPIO_SPEED_FAST;
+#ifndef STM32F1
 	GPIO_InitStruct.Alternate = USARTx_TX_AF;
-
+#endif
 	HAL_GPIO_Init(USARTx_TX_GPIO_PORT, &GPIO_InitStruct);
 
 	/* UART RX GPIO pin configuration  */
 	GPIO_InitStruct.Pin       = USARTx_RX_PIN;
+#ifndef STM32F1
 	GPIO_InitStruct.Alternate = USARTx_RX_AF;
-
+#endif
 	HAL_GPIO_Init(USARTx_RX_GPIO_PORT, &GPIO_InitStruct);
 
 	/* Enable USARTx clock */
