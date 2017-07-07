@@ -20,6 +20,7 @@ ifeq ($(TARGET),wifi)
 MCU       = cortex-m4
 CHIP      = STM32F411xE
 BOARD     = F4_WIFI
+SERIES    = STM32F4
 
 CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 CDEFS    += -DUSE_HAL_DRIVER
@@ -42,6 +43,7 @@ ifeq ($(TARGET),disco)
 MCU       = cortex-m4
 CHIP      = STM32F40x_1024k
 BOARD     = F4_DISCO
+SERIES    = STM32F4
 
 CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 CDEFS    += -DUSE_HAL_DRIVER
@@ -64,6 +66,7 @@ ifeq ($(TARGET),tiny)
 MCU       = cortex-m3
 CHIP      = STM32F103xB
 BOARD     = F1_TINY
+SERIES    = STM32F1
 
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F103xB
@@ -85,6 +88,7 @@ ifeq ($(TARGET),f105)
 MCU       = cortex-m3
 CHIP      = STM32F105xC
 BOARD     = F105_LITE
+SERIES    = STM32F1
 
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F105xC
@@ -226,8 +230,8 @@ CDEFS += -D$(VECTOR_TABLE_LOCATION)
 ADEFS += -D$(VECTOR_TABLE_LOCATION)
 endif
 
-CDEFS += -D$(RUN_MODE) -D$(BOARD)
-ADEFS += -D$(RUN_MODE) -D$(BOARD)
+CDEFS += -D$(RUN_MODE) -D$(BOARD) -D$(SERIES)
+ADEFS += -D$(RUN_MODE) -D$(BOARD) -D$(SERIES)
 
 # Compiler flags.
 
