@@ -13,6 +13,9 @@ REMOVE_CMD = rm
 
 USE_THUMB_MODE = YES
 
+CDEFS    += -DDEBUG
+CDEFS    += -DDEBUG_BAUDRATE=1000000
+
 # MCU name, submodel and board
 # - MCU used for compiler-option (-mcpu)
 # - BOARD just passed as define (don't used '-' characters)
@@ -26,8 +29,6 @@ CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F411xE -DARM_MATH_CM4 -D__FPU_PRESENT=1
 CDEFS    += -DHSE_VALUE=8000000UL
-CDEFS    += -DDEBUG
-CDEFS    += -DDEBUG_BAUDRATE=115200
 
 HAL_DRV  = STM32F4xx
 HAL_DRV2 = stm32f4xx
@@ -49,8 +50,6 @@ CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F407xx -DARM_MATH_CM4 -D__FPU_PRESENT=1
 CDEFS    += -DHSE_VALUE=8000000UL
-CDEFS    += -DDEBUG
-CDEFS    += -DDEBUG_BAUDRATE=1000000
 
 HAL_DRV  = STM32F4xx
 HAL_DRV2 = stm32f4xx
@@ -71,8 +70,6 @@ SERIES    = STM32F1
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F103xB
 CDEFS    += -DHSE_VALUE=8000000UL
-CDEFS    += -DDEBUG
-CDEFS    += -DDEBUG_BAUDRATE=1000000
 
 HAL_DRV  = STM32F1xx
 HAL_DRV2 = stm32f1xx
@@ -93,8 +90,6 @@ SERIES    = STM32F1
 CDEFS    += -DUSE_HAL_DRIVER
 CDEFS    += -DSTM32F105xC
 CDEFS    += -DHSE_VALUE=8000000UL
-CDEFS    += -DDEBUG
-CDEFS    += -DDEBUG_BAUDRATE=1000000
 
 HAL_DRV  = STM32F1xx
 HAL_DRV2 = stm32f1xx
