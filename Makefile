@@ -6,7 +6,7 @@ endif
 
 -include local.mk
 
-TARGET ?= disco
+TARGET ?= f4disco
 
 TCHAIN_PREFIX = arm-none-eabi-
 REMOVE_CMD = rm
@@ -40,7 +40,7 @@ TGT_LD   = -T./gcc/STM32F411RE_FLASH.ld
 OOCD_TGT = stm32f4.cfg
 endif
 
-ifeq ($(TARGET),disco)
+ifeq ($(TARGET),f4disco)
 MCU       = cortex-m4
 CHIP      = STM32F40x_1024k
 BOARD     = F4_DISCO
