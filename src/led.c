@@ -43,6 +43,25 @@ static GPIO_TypeDef* ports[LED_NUM] = {
 };
 #endif
 
+#ifdef F3_DISCO
+
+#define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOE_CLK_ENABLE
+
+static uint16_t pins[LED_NUM]  = { 
+	GPIO_PIN_8, 
+	GPIO_PIN_9, 
+	GPIO_PIN_10, 
+	GPIO_PIN_11, 
+};
+
+static GPIO_TypeDef* ports[LED_NUM] = { 
+	GPIOE, 
+	GPIOE, 
+	GPIOE, 
+	GPIOE
+};
+#endif
+
 #ifdef F1_TINY
 
 #define LED_GPIO_CLK_ENABLE __HAL_RCC_GPIOA_CLK_ENABLE

@@ -9,7 +9,11 @@ static void __putc(uint8_t data)
     while(__HAL_UART_GET_FLAG(&huart, UART_FLAG_TXE) == RESET) {
     	// wait
     }
+#ifdef STM32F3
+    huart.Instance->TDR = data;
+#else
     huart.Instance->DR = data;
+#endif
 }
 
 /*

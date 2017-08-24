@@ -61,6 +61,28 @@ TGT_LD   = -T./gcc/STM32F407VG_FLASH.ld
 OOCD_TGT = stm32f4.cfg
 endif
 
+ifeq ($(TARGET),f3disco)
+MCU       = cortex-m4
+CHIP      = STM32F303xC
+BOARD     = F3_DISCO
+SERIES    = STM32F3
+
+CDEFS    += -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
+CDEFS    += -DUSE_HAL_DRIVER
+CDEFS    += -DSTM32F303xC -DARM_MATH_CM4 -D__FPU_PRESENT=1
+CDEFS    += -DHSE_VALUE=8000000UL
+
+HAL_DRV  = STM32F3xx
+HAL_DRV2 = stm32f3xx
+
+TGT_SRC  = src/system_stm32f3xx.c 
+TGT_SRC += src/stm32f3xx_it.c
+#TGT_SRC  += src/stm32f4_discovery.c 
+TGT_ASRC = gcc/startup_stm32f303xc.s
+TGT_LD   = -T./gcc/STM32F303VC_FLASH.ld
+OOCD_TGT = stm32f3.cfg
+endif
+
 ifeq ($(TARGET),tiny)
 MCU       = cortex-m3
 CHIP      = STM32F103xB
