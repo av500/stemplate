@@ -5,7 +5,9 @@ targets supported:
 
 * **wifi:** 	EMW3165 STM32F411 based WiFi module
 
-* **disco:** 	STM32F407 Discovery
+* **f4disco:** 	STM32F4-Discovery
+
+* **f3disco:** 	STM32F3-Discovery
 
 * **tiny:** 	various STM32F103 based modules from eBay
 
